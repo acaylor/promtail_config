@@ -1,4 +1,4 @@
 ---
 # defaults file for promtail_config
 promtail_version: '2.5.0'
-loki_url: "https://loki.lan.ayjc.net"
+loki_url: "https://loki.example.com"
