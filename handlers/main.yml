@@ -1,0 +1,13 @@
+---
+# handlers file for promtail_config
+- name: reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  become: yes
+
+- name: restart
+  ansible.builtin.systemd:
+    name: promtail
+    state: restarted
+    enabled: yes
+  become: yes

@@ -1,0 +1,20 @@
+---
+- name: install unzip package
+  package:
+    name: unzip
+    state: present
+- name: download promtail bin
+  ansible.builtin.unarchive:
+    src: https://github.com/grafana/loki/releases/download/v{{ promtail_version }}/promtail-linux-amd64.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: promtail
+  ansible.builtin.copy:
+    src: /tmp/promtail-linux-amd64
+    dest: /usr/local/bin/promtail
+    mode: '751'
+    owner: root
+    group: root
+    remote_src: yes
+  become: yes

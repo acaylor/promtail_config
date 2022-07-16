@@ -1,0 +1,3 @@
+---
+# vars file for promtail_config
+promtail_version_string_match: 'promtail, version {{ promtail_version }} '

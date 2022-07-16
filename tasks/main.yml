@@ -1,0 +1,20 @@
+---
+# tasks file for promtail_config
+- name: create promtail user
+  ansible.builtin.import_tasks: user.yml
+
+- name: check promtail version
+  ansible.builtin.command: /usr/local/bin/promtail -version
+  register: promtail_current
+  ignore_errors: yes
+  changed_when: no
+
+- name: install promtail
+  ansible.builtin.import_tasks: install.yml
+  when: promtail_current.rc != 0 or not promtail_current.stdout is search(promtail_version_string_match)
+
+- name: configure promtail
+  ansible.builtin.import_tasks: config.yml
+
+- name: create promtail service
+  ansible.builtin.import_tasks: service.yml

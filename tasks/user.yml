@@ -1,0 +1,16 @@
+---
+- name: create promtail group
+  group:
+    name: promtail
+    state: present
+    system: True
+- name: create promtail user
+  user:
+    name: promtail
+    group: promtail
+    groups: "adm"
+    append: True
+    shell: /usr/sbin/nologin
+    system: True
+    createhome: False
+    home: /
